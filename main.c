@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <sys/ioctl.h>
+#include <string.h>
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb/stb_image.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
@@ -8,7 +10,72 @@
 #define STB_IMAGE_RESIZE_IMPLEMENTATION
 #include "stb/stb_image_resize2.h"
 
-int  main(void) {
+
+int giveHelp(char* programName);
+
+int main( int argc, char *argv[] ) {
+
+    struct winsize w;
+    ioctl(0, TIOCGWINSZ, &w);
+    if (argc < 2 || strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
+        giveHelp(argv[0]);
+    }
+
+    char* filePath, *charset;
+    int width, height;
+    bool customPath = false, customSize = false, customCharset = false;
+
+    for (size_t i = 1; i < argc; i++)
+    {
+        if (strcmp(argv[i], "-p") == 0) {
+            customPath = true;
+            filePath = argv[i+1];
+            if (filePath == NULL) {
+                printf("Error! No filePath inserted!\n");
+                exit(EXIT_FAILURE);
+            }
+            printf("\n%s\n", filePath);
+            i++;
+        } 
+        if (strcmp(argv[i], "-s") == 0) {
+            customSize = true;
+            width = atoi(argv[i+1]);
+            height = atoi(argv[i+2]);
+            printf("\n%d %d\n", width, height);
+            i+=2;
+        } 
+        if (strcmp(argv[i], "-c") == 0){
+            customCharset = true;
+            charset = argv[i+1];
+            printf("\n%s\n", charset);
+            i++;
+        }
+        if (customPath == false) {
+            giveHelp(argv[0]);
+        }
+        if (customSize == false) {
+            width = w.ws_row;
+            height = w.ws_col;
+        }  
+        if (customCharset == false) {
+            
+        }
+    }
+    return 0;
+}   
+
+    int giveHelp(char* programName) {
+        printf("Usage: %s [options]\n", programName);
+        printf("Options:\n");
+        printf(" -p <path>   Specify the path to the image file\n");
+        printf(" -s <width> <height>   Specify the size of the image\n");
+        printf(" -c <charset>   Specify the charset of the image with no gaps inbetween characters\n");
+        printf(" -h, --help   Display this help message\n");
+        exit(EXIT_SUCCESS);
+    }
+
+int getImage(void) {
+
     int width, height, channels;
     // zero seems to be auto assignment? docs dont say shit, not that the docs are good
     // TODO: create a way to add your file in
@@ -39,5 +106,6 @@ int  main(void) {
     }
 
     return 0;
-}   
+}
+
 
