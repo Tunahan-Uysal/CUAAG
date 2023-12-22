@@ -75,7 +75,7 @@ int main( int argc, char *argv[] ) {
         printf("Default Dimensions: %d x %d\n", width, height);
     }  
     if (customCharset == false) {
-        charset = "!\"#$%&'()*+,-./:;<=>?@[\\]^_";
+        charset = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'.";
         printf("Default Used Chars: %s\n", charset);
     }
 
