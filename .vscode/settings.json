@@ -2,5 +2,6 @@
     "files.associations": {
         "stb_image_write.h": "c",
         "stb_image_resize.h": "c"
-    }
+    },
+    "cmake.configureOnOpen": true
 }

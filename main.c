@@ -34,42 +34,60 @@ int main( int argc, char *argv[] ) {
                 printf("Error! No filePath inserted!\n");
                 exit(EXIT_FAILURE);
             }
-            printf("\n%s\n", filePath);
+            printf("Given Path: %s\n", filePath);
             i++;
         } 
         if (strcmp(argv[i], "-s") == 0) {
             customSize = true;
-            width = atoi(argv[i+1]);
-            height = atoi(argv[i+2]);
-            printf("\n%d %d\n", width, height);
+
+            if (i+1 == argc) {
+                printf("Width is not determined! Please input a width value.\n");
+                exit(EXIT_FAILURE);
+            }
+            else {
+                width = atoi(argv[i+1]);
+            }
+            if (i+2 == argc) {
+                printf("Height is not determined! Please input a height value.\n");
+                exit(EXIT_FAILURE);
+            }
+            else {
+                height = atoi(argv[i+2]);
+            }
+            printf("Dimensions: %d x %d\n", width, height);
             i+=2;
         } 
         if (strcmp(argv[i], "-c") == 0){
             customCharset = true;
             charset = argv[i+1];
-            printf("\n%s\n", charset);
+            printf("Used Chars: %s\n", charset);
             i++;
         }
-        if (customPath == false) {
-            giveHelp(argv[0]);
-        }
-        if (customSize == false) {
-            width = w.ws_row;
-            height = w.ws_col;
-        }  
-        if (customCharset == false) {
-            
-        }
     }
+
+    if (customPath == false) {
+        printf("Path is missing!\n");
+        giveHelp(argv[0]);
+    }
+    if (customSize == false) {
+        width = w.ws_row;
+        height = w.ws_col;
+        printf("Default Dimensions: %d x %d\n", width, height);
+    }  
+    if (customCharset == false) {
+        charset = "!\"#$%&'()*+,-./:;<=>?@[\\]^_";
+        printf("Default Used Chars: %s\n", charset);
+    }
+
     return 0;
 }   
 
     int giveHelp(char* programName) {
         printf("Usage: %s [options]\n", programName);
         printf("Options:\n");
-        printf(" -p <path>   Specify the path to the image file\n");
+        printf(" -p <path>   Specify the path to the image file (Uses working directory)\n");
         printf(" -s <width> <height>   Specify the size of the image\n");
-        printf(" -c <charset>   Specify the charset of the image with no gaps inbetween characters\n");
+        printf(" -c '<charset>'   Specify the charset of the image inbetween quotes and with no gaps inbetween characters\n");
         printf(" -h, --help   Display this help message\n");
         exit(EXIT_SUCCESS);
     }
