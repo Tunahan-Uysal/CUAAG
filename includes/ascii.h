@@ -1,0 +1,1 @@
+void ascii_generation(int luminence, char* path, char* charset);

@@ -4,11 +4,12 @@
 #include <sys/ioctl.h>
 #include <string.h>
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb/stb_image.h"
+#include "../includes/stb_image.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
-#include "stb/stb_image_write.h"
+#include "../includes/stb_image_write.h"
 #define STB_IMAGE_RESIZE_IMPLEMENTATION
-#include "stb/stb_image_resize2.h"
+#include "../includes/stb_image_resize2.h"
+#include "../includes/image.h"
 
 
 int giveHelp(char* programName);
@@ -75,9 +76,21 @@ int main( int argc, char *argv[] ) {
         printf("Default Dimensions: %d x %d\n", width, height);
     }  
     if (customCharset == false) {
-        charset = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'.";
+        charset = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'.";
         printf("Default Used Chars: %s\n", charset);
+        for (size_t i = 0; i < strlen(charset); i++)
+        {
+            printf("%s %ld\n", &charset[i], i);
+
+        }
+        
     }
+
+    for (int num = 255; num > 0; num--) {
+        printf("%c\n", charset[(int)round(num/3.75)] + 0);
+    }
+
+    getimage(filePath, width, height);
 
     return 0;
 }   
