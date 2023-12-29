@@ -1,0 +1,20 @@
+[
+{
+  "directory": "/home/tunahanuysal/imageReadWithC/build",
+  "command": "/usr/bin/gcc  -I/home/tunahanuysal/imageReadWithC/includes -g -std=gnu99 -lm -fsanitize=address -Wall -o CMakeFiles/MyProject.dir/src/main.c.o -c /home/tunahanuysal/imageReadWithC/src/main.c",
+  "file": "/home/tunahanuysal/imageReadWithC/src/main.c",
+  "output": "CMakeFiles/MyProject.dir/src/main.c.o"
+},
+{
+  "directory": "/home/tunahanuysal/imageReadWithC/build",
+  "command": "/usr/bin/gcc  -I/home/tunahanuysal/imageReadWithC/includes -g -std=gnu99 -lm -fsanitize=address -Wall -o CMakeFiles/MyProject.dir/includes/image.c.o -c /home/tunahanuysal/imageReadWithC/includes/image.c",
+  "file": "/home/tunahanuysal/imageReadWithC/includes/image.c",
+  "output": "CMakeFiles/MyProject.dir/includes/image.c.o"
+},
+{
+  "directory": "/home/tunahanuysal/imageReadWithC/build",
+  "command": "/usr/bin/gcc  -I/home/tunahanuysal/imageReadWithC/includes -g -std=gnu99 -lm -fsanitize=address -Wall -o CMakeFiles/MyProject.dir/includes/ascii.c.o -c /home/tunahanuysal/imageReadWithC/includes/ascii.c",
+  "file": "/home/tunahanuysal/imageReadWithC/includes/ascii.c",
+  "output": "CMakeFiles/MyProject.dir/includes/ascii.c.o"
+}
+]

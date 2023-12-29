@@ -10,7 +10,7 @@ MAIN = main
 all: $(MAIN)
 	@echo Compiled
 $(MAIN): $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDES) $(LFLAGS) $(LIBS)
+	$(CC) $(CFLAGS) $(INCLUDES) $(LFLAGS) $(LIBS) -o $(MAIN) $^
 .c.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 clean:

@@ -1,0 +1,1 @@
+/usr/bin/gcc -g CMakeFiles/MyProject.dir/src/main.c.o CMakeFiles/MyProject.dir/includes/image.c.o CMakeFiles/MyProject.dir/includes/ascii.c.o -o MyProject 
