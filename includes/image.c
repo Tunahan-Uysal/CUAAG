@@ -28,7 +28,7 @@ Matrix* getluminescence(unsigned char* image, int width, int height, int channel
         printf("\n");
     }
     printf("After the ForLoop\n");
-    printf("end");
+    printf("end\n");
     free(image);
     return luminescence;
 }
@@ -48,10 +48,10 @@ Matrix* getimage(char* path, int _width, int _height) {
         //stbi_write_png("old_image.png", width, height, channels, img, width * channels);
         unsigned char *output_img = malloc(_width * _height * channels);
         // Why does this have two sections where it must be zero? why!!!!!!!
-        stbir_resize_uint8_srgb(img, width, height, 0, output_img, _height, _width, 0, channels);
+        stbir_resize_uint8_srgb(img, width, height, 0, output_img, _width, _height, 0, channels);
         if (output_img != NULL) {
             printf("Success!\n");
-            stbi_write_png("new_image.png", _height, _width, channels, output_img, _height * channels);
+            stbi_write_png("new_image.png", _width, _height, channels, output_img, _width * channels);
             stbi_image_free(img);
             return getluminescence(output_img, _width, _height, channels);
         }
