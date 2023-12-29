@@ -3,12 +3,7 @@
 #include <stdbool.h>
 #include <sys/ioctl.h>
 #include <string.h>
-#define STB_IMAGE_IMPLEMENTATION
-#include "../includes/stb_image.h"
-#define STB_IMAGE_WRITE_IMPLEMENTATION
-#include "../includes/stb_image_write.h"
-#define STB_IMAGE_RESIZE_IMPLEMENTATION
-#include "../includes/stb_image_resize2.h"
+#include <math.h>
 #include "../includes/image.h"
 
 
@@ -86,57 +81,22 @@ int main( int argc, char *argv[] ) {
         
     }
 
-    for (int num = 255; num > 0; num--) {
+    for (int num = 255; num > 0; num--) { 
         printf("%c\n", charset[(int)round(num/3.75)] + 0);
     }
-
-    getimage(filePath, width, height);
-
+    Matrix* luminescence = getimage(filePath, width, height);
+    ascii_generation(luminescence, filePath, charset);
     return 0;
 }   
 
-    int giveHelp(char* programName) {
-        printf("Usage: %s [options]\n", programName);
-        printf("Options:\n");
-        printf(" -p <path>   Specify the path to the image file (Uses working directory)\n");
-        printf(" -s <width> <height>   Specify the size of the image\n");
-        printf(" -c '<charset>'   Specify the charset of the image inbetween quotes and with no gaps inbetween characters\n");
-        printf(" -h, --help   Display this help message\n");
-        exit(EXIT_SUCCESS);
-    }
-
-int getImage(void) {
-
-    int width, height, channels;
-    // zero seems to be auto assignment? docs dont say shit, not that the docs are good
-    // TODO: create a way to add your file in
-    unsigned char *img = stbi_load("temp.png", &width, &height, &channels, 0);
-    if(img != NULL) {
-        printf("%d\n", channels);
-        if(img == NULL) {
-            printf("File could not be loaded.\n");
-            stbi_image_free(img);
-            exit(EXIT_FAILURE);
-        }
-        
-
-        //stbi_write_png("old_image.png", width, height, channels, img, width * channels);
-        unsigned char *output_img = malloc(80 * 80 * channels);
-        // Why does this have two sections where it must be zero? why!!!!!!!
-        stbir_resize_uint8_srgb(img, width, height, 0, output_img, 80, 80, 0, channels);
-        if (output_img != NULL) {
-            printf("Success!\n");
-            stbi_write_png("new_image.png", 80, 80, channels, output_img, 80 * channels);
-        }
-        else {
-            printf("sorry\n");
-        }
-        // Free the memory used for the new image and the original image
-        stbi_image_free(img);
-        free(output_img);
-    }
-
-    return 0;
+int giveHelp(char* programName) {
+    printf("Usage: %s [options]\n", programName);
+    printf("Options:\n");
+    printf(" -p <path>   Specify the path to the image file (Uses working directory)\n");
+    printf(" -s <width> <height>   Specify the size of the image\n");
+    printf(" -c '<charset>'   Specify the charset of the image inbetween quotes and with no gaps inbetween characters\n");
+    printf(" -h, --help   Display this help message\n");
+    exit(EXIT_SUCCESS);
 }
 
 
