@@ -66,8 +66,8 @@ int main( int argc, char *argv[] ) {
         giveHelp(argv[0]);
     }
     if (customSize == false) {
-        width = w.ws_row;
-        height = w.ws_col;
+        width = w.ws_col;
+        height = w.ws_row;
         printf("Default Dimensions: %d x %d\n", width, height);
     }  
     if (customCharset == false) {
