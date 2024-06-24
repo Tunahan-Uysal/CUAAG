@@ -66,8 +66,8 @@ int main( int argc, char *argv[] ) {
         giveHelp(argv[0]);
     }
     if (customSize == false) {
-        width = w.ws_row;
-        height = w.ws_col;
+        width = w.ws_col;
+        height = w.ws_row;
         printf("Default Dimensions: %d x %d\n", width, height);
     }  
     if (customCharset == false) {
@@ -91,11 +91,11 @@ int main( int argc, char *argv[] ) {
 
 int giveHelp(char* programName) {
     printf("Usage: %s [options]\n", programName);
-    printf("Options:\n");
-    printf(" -p <path>   Specify the path to the image file (Uses working directory)\n");
-    printf(" -s <width> <height>   Specify the size of the image\n");
-    printf(" -c '<charset>'   Specify the charset of the image inbetween quotes and with no gaps inbetween characters\n");
-    printf(" -h, --help   Display this help message\n");
+    printf("Options:\n"
+    " -p <path>   Specify the path to the image file (Uses working directory)\n"
+    " -s <width> <height>   Specify the size of the image\n"
+    " -c '<charset>'   Specify the charset of the image inbetween quotes and with no gaps inbetween characters\n"
+    " -h, --help   Display this help message\n");
     exit(EXIT_SUCCESS);
 }
 
