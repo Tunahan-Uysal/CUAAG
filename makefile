@@ -1,9 +1,9 @@
 CC = gcc
 CFLAGS = -g -fsanitize=address -std=c99 -Wall
 INCLUDES = -Iincludes
-LFLAGS = 
+LFLAGS =
 LIBS = -lm
-SRCS = src/main.c includes/image.c includes/ascii.c includes/creatematrix.c
+SRCS = src/main.c includes/image.c includes/ascii.c includes/creatematrix.c includes/debug.c
 OBJS = $(SRCS:.c=.o)
 MAIN = main
 
